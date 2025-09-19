@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axtarış</title>
+  <link rel="stylesheet" href="/public/common.css" />
+
+<script>
+(function checkAuthGuard(){
+  const token = localStorage.getItem('token');
+  if(!token){ window.location.replace('/public/login.html'); }
+})();
+</script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Axtarış — Nömrə ilə</h2>
+      <div class="row">
+        <div><label>Nömrə (məs: 10-AB-123)</label><input id="qPlate" placeholder="10-AB-123" /></div>
+        <div><label>&nbsp;</label><button class="btn btn-primary" id="btnFind">Axtar</button></div>
+      </div>
+      <div class="divider"></div>
+      <div id="result"></div>
+    </div>
+  </div>
+  <script src="/public/nav.js"></script>
+  <script src="/public/search.js"></script>
+</body>
+</html>

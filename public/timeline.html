@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaman cədvəli</title>
+  <link rel="stylesheet" href="/public/common.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Maşınların statusu — Zaman cədvəli</h2>
+      <div class="legend">
+        <span class="chip b">Bronlandı</span>
+        <span class="chip a">Aktiv</span>
+        <span class="chip c">Bitdi</span>
+        <span class="chip x">Ləğv edildi</span>
+      </div>
+      <div class="timeline-controls">
+        <div>
+          <label>Başlama (datetime)</label>
+          <input id="tlStart" type="datetime-local" />
+        </div>
+        <div>
+          <label>Müddət (gün)</label>
+          <input id="tlDays" type="number" value="30" min="1" />
+        </div>
+        <div>
+          <label>Filter (nömrə və ya marka/model)</label>
+          <input id="tlFilter" placeholder="10-AB-123 və s." />
+        </div>
+        <button class="btn" id="tlApply">Tətbiq et</button>
+      </div>
+      <div class="scale" id="tlScale"></div>
+      <div class="timeline" id="tl"></div>
+    </div>
+  </div>
+  <script src="/public/nav.js"></script>
+  <script src="/public/timeline.js"></script>
+</body>
+</html>

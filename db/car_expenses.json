@@ -1,0 +1,35 @@
+[
+  {
+    "id": "Ql-dEn_X1krR",
+    "carId": "FW94Vq_vTDwQ",
+    "title": "g",
+    "payee": "y",
+    "purpose": "s",
+    "amount": 50,
+    "when": "2025-09-18T12:04",
+    "createdAt": "2025-09-18T08:04:41.411Z",
+    "updatedAt": "2025-09-18T08:13:38.434Z"
+  },
+  {
+    "id": "sPRTU1KXPYU0",
+    "carId": "FW94Vq_vTDwQ",
+    "title": "yağ",
+    "payee": "şəkili",
+    "purpose": "",
+    "amount": 50,
+    "when": "2025-09-18T12:17",
+    "createdAt": "2025-09-18T08:18:13.825Z",
+    "updatedAt": "2025-09-18T08:18:13.825Z"
+  },
+  {
+    "id": "Jz6uu8_oyNTr",
+    "carId": "GMJe5DTLPrTU",
+    "title": "yağ",
+    "payee": "s",
+    "purpose": "s",
+    "amount": 50,
+    "when": "2025-09-18T13:52",
+    "createdAt": "2025-09-18T09:52:26.509Z",
+    "updatedAt": "2025-09-18T09:52:26.509Z"
+  }
+]

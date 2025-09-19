@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Müştərilər</title>
+  <link rel="stylesheet" href="/public/common.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Müştəri əlavə et</h2>
+      <div class="row">
+        <div><label>Ad</label><input id="cFirst" /></div>
+        <div><label>Soyad</label><input id="cLast" /></div>
+      </div>
+      <div class="row">
+        <div><label>Telefon</label><input id="cPhone" /></div>
+        <div><label>Email</label><input id="cEmail" /></div>
+      </div>
+      <div>
+        <label>Şəxsiyyət vəsiqəsi (şəkil/pdf)</label>
+        <input id="cIdCard" type="file" />
+      </div>
+      <button class="btn btn-primary" onclick="addCustomer()">Yadda saxla</button>
+      <div class="divider"></div>
+      <table class="table" id="customersTbl"></table>
+    </div>
+  </div>
+
+  <div class="modal" id="custModal">
+    <div class="sheet">
+      <h3>Müştərini redaktə et</h3>
+      <div class="row">
+        <div><label>Ad</label><input id="eFirst" /></div>
+        <div><label>Soyad</label><input id="eLast" /></div>
+      </div>
+      <div class="row">
+        <div><label>Telefon</label><input id="ePhone" /></div>
+        <div><label>Email</label><input id="eEmail" /></div>
+      </div>
+      <div class="divider"></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn" id="eClose">Bağla</button>
+        <button class="btn btn-success" id="eSave">Yadda saxla</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/public/nav.js"></script>
+  <script src="/public/customers.js"></script>
+</body>
+</html>

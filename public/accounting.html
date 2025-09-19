@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mühasibat — Gəlir</title>
+  <link rel="stylesheet" href="/public/common.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Mühasibat — Gəlir</h2>
+
+      <div class="row">
+        <div>
+          <label>Ay</label>
+          <input id="aMonth" type="month" />
+        </div>
+        <div style="display:flex;align-items:flex-end;gap:8px;">
+          <button class="btn" id="aApply">Tətbiq et</button>
+          <button class="btn" id="btnRefresh">Yenilə</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row">
+        <div><b>Cəmi gəlir:</b> <span id="aTotal">0</span> ₼</div>
+        <div><b>Bron sayı:</b> <span id="aCount">0</span></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Başlanğıc</th>
+              <th>Bitiş</th>
+              <th>Gün</th>
+              <th>Maşın</th>
+              <th>Müştəri</th>
+              <th>Qiymət/gün</th>
+              <th>Endirim %</th>
+              <th>Cəm məbləğ</th>
+              <th>Status</th>
+              <th>Təyinat</th>
+            </tr>
+          </thead>
+          <tbody id="aTbl"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="/public/nav.js"></script>
+  <script src="/public/accounting.js"></script>
+</body>
+</html>

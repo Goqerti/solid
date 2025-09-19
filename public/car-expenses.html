@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maşın xərcləri</title>
+  <link rel="stylesheet" href="/public/common.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Maşın xərcləri</h2>
+      <div class="row">
+        <div>
+          <label>Maşın</label>
+          <select id="carSelect"></select>
+        </div>
+        <div>
+          <label>Ay</label>
+          <input id="xMonth" type="month" />
+        </div>
+        <div style="display:flex;align-items:flex-end">
+          <button class="btn" id="xApply">Tətbiq et</button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div><label>Xərc adı</label><input id="xTitle" placeholder="Məs: Yağ dəyişikliyi" /></div>
+        <div><label>Kimə</label><input id="xPayee" placeholder="Servis" /></div>
+      </div>
+      <div class="row">
+        <div><label>Nə üçün</label><input id="xPurpose" placeholder="Qısa izah" /></div>
+        <div><label>Məbləğ (AZN)</label><input id="xAmount" type="number" step="0.01" /></div>
+      </div>
+      <div class="row">
+        <div><label>Tarix və saat</label><input id="xWhen" type="datetime-local" /></div>
+        <div style="display:flex;align-items:flex-end">
+          <button class="btn btn-success" id="xAdd">Xərc əlavə et</button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row" style="justify-content:space-between">
+        <div class="badge">Cəmi: <span id="xTotal">0.00 AZN</span></div>
+        <div class="helper" id="xCount"></div>
+      </div>
+      <table class="table" id="xTbl"></table>
+    
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="cxModal">
+    <div class="sheet">
+      <h3>Xərc redaktə et (Maşın)</h3>
+      <div class="row">
+        <div><label>Xərc adı</label><input id="ceTitle" /></div>
+        <div><label>Kimə</label><input id="cePayee" /></div>
+      </div>
+      <div class="row">
+        <div><label>Nə üçün</label><input id="cePurpose" /></div>
+        <div><label>Məbləğ (AZN)</label><input id="ceAmount" type="number" step="0.01" /></div>
+      </div>
+      <div class="row">
+        <div><label>Tarix və saat</label><input id="ceWhen" type="datetime-local" /></div>
+        <div style="display:flex;align-items:flex-end;gap:8px;justify-content:flex-end">
+          <button class="btn" id="ceClose">Bağla</button>
+          <button class="btn btn-success" id="ceSave">Yadda saxla</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/public/nav.js"></script>
+
+  <script src="/public/car-expenses.js"></script>
+</body>
+</html>

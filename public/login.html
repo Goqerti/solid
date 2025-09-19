@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giriş</title>
+  <style>
+    body {
+      font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-width: 420px;
+      width: 100%;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #111827;
+    }
+    label {
+      display: block;
+      margin: 10px 0 4px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    button:hover { background: #1e40af; }
+    .secondary { background: #6b7280; }
+    .secondary:hover { background: #374151; }
+    .msg { text-align:center; margin-top:10px; font-size:14px; }
+    .ok { color:#065f46; }
+    .error { color:#b91c1c; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🚗 Rentacar — Giriş</h1>
+    
+    <!-- Login form -->
+    <label>Email</label>
+    <input id="email" type="email" placeholder="owner@example.com"/>
+    <label>Parol</label>
+    <input id="password" type="password" placeholder="••••••••"/>
+    <button id="btnLogin">Giriş et</button>
+    <div id="loginMsg" class="msg"></div>
+
+    <hr style="margin:20px 0;">
+
+    <!-- Show Create User Section -->
+    <button class="secondary" onclick="toggleCreate()">Yeni istifadəçi yarat</button>
+    
+    <div id="createSection" class="hidden">
+      <h2>Yeni istifadəçi</h2>
+      <label>Email</label>
+      <input id="nEmail" type="email" placeholder="user@example.com"/>
+      <label>Parol</label>
+      <input id="nPass" type="text" placeholder="parol"/>
+      <label>Rol</label>
+      <select id="nRole">
+        <option value="operator">operator</option>
+        <option value="accountant">accountant</option>
+        <option value="admin">admin</option>
+      </select>
+      <label>Owner kodu</label>
+      <input id="ownerCode" type="password" placeholder="Owner kodunu daxil et"/>
+      <button id="btnCreate">İstifadəçi yarat</button>
+      <div id="createMsg" class="msg"></div>
+    </div>
+  </div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const msg = (el, text, ok)=>{ el.textContent=text; el.className="msg " + (ok? "ok":"error"); };
+
+  // Login
+  async function login(){
+    $('loginMsg').textContent='';
+    try{
+      const res = await fetch('/api/auth/login',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ email: $('email').value, password: $('password').value })
+      });
+      const data = await res.json();
+      if(!res.ok){ msg($('loginMsg'), data.error||'Xəta', false); return; }
+      localStorage.setItem('token', data.token);
+      msg($('loginMsg'), 'Giriş uğurlu', true);
+      setTimeout(()=> window.location.href='/public/reservations.html', 500);
+    }catch(e){ msg($('loginMsg'), e.message, false); }
+  }
+
+  // Create user (requires owner code)
+  async function createUser(){
+    $('createMsg').textContent='';
+    const code = $('ownerCode').value.trim();
+    if(code !== "12345"){ // burada öz kodunu qoya bilərsən
+      return msg($('createMsg'), 'Yanlış owner kodu', false);
+    }
+    try{
+      const res = await fetch('/api/auth/register',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+(localStorage.getItem('token')||'')},
+        body: JSON.stringify({ email:$('nEmail').value, password:$('nPass').value, role:$('nRole').value })
+      });
+      const data = await res.json();
+      if(!res.ok){ msg($('createMsg'), data.error||'Xəta', false); return; }
+      msg($('createMsg'), 'Yaradıldı: '+data.email+' ('+data.role+')', true);
+    }catch(e){ msg($('createMsg'), e.message, false); }
+  }
+
+  // Toggle create section
+  function toggleCreate(){
+    $('createSection').classList.toggle('hidden');
+  }
+
+  $('btnLogin').onclick = login;
+  $('btnCreate').onclick = createUser;
+</script>
+</body>
+</html>

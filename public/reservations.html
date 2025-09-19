@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rezervasiya</title>
+  <link rel="stylesheet" href="/public/common.css" />
+
+<script>
+(function checkAuthGuard(){
+  const token = localStorage.getItem('token');
+  if(!token){ window.location.replace('/public/login.html'); }
+})();
+</script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Rezervasiya et <span class="badge">Yeni</span></h2>
+      <div class="row">
+        <div>
+          <label>Maşın</label>
+          <select id="rCar"></select>
+        </div>
+        <div>
+          <label>Müştəri</label>
+          <div class="searchbar">
+            <input id="customerSearch" placeholder="Ad, Soyad, telefon və ya email axtar" />
+            <button class="btn" id="btnSearch">Axtar</button>
+            <button class="btn btn-success" id="btnNewCustomer">Yeni müştəri</button>
+          </div>
+          <select id="rCustomer" style="margin-top:8px"></select>
+          <div class="helper">Axtarışdan sonra siyahı yenilənir; tapılmadısa “Yeni müştəri” ilə yerində əlavə edin.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Başlama tarixi</label><input id="rStart" type="datetime-local" /></div>
+        <div><label>Bitmə tarixi</label><input id="rEnd" type="datetime-local" /></div>
+      </div>
+      <div class="row">
+        <div><label>Günlük qiymət (AZN) — opsional</label><input id="rUnitPrice" type="number" step="0.01" placeholder="Məs: 130.00" /></div>
+        <div><label>İstiqamət</label><input id="rDestination" placeholder="Məs: Bakı → Quba" /></div>
+      </div>
+      <div class="row">
+        <div><label>Endirim (%)</label><input id="rDiscount" type="number" step="1" value="0" /></div>
+        <div><label>Cəmi</label><input id="rTotal" type="text" disabled /></div>
+      </div>
+      <div id="conflictWarn" class="helper" style="margin:6px 0 10px;"></div>
+      <button class="btn btn-primary" id="btnCreate">Rezerv et</button>
+      <div class="divider"></div>
+      <table class="table" id="reservationsTbl"></table>
+    </div>
+  </div>
+
+  <!-- Add Customer Modal -->
+  <div class="modal" id="custModal">
+    <div class="sheet">
+      <h3>Yeni müştəri</h3>
+      <div class="row">
+        <div><label>Ad</label><input id="mFirst" /></div>
+        <div><label>Soyad</label><input id="mLast" /></div>
+      </div>
+      <div class="row">
+        <div><label>Telefon</label><input id="mPhone" /></div>
+        <div><label>Email</label><input id="mEmail" /></div>
+      </div>
+      <div><label>Şəxsiyyət vəsiqəsi</label><input id="mIdCard" type="file" /></div>
+      <div class="divider"></div>
+      <div style="display:flex; gap:8px; justify-content:flex-end">
+        <button class="btn" id="mClose">Bağla</button>
+        <button class="btn btn-success" id="mSave">Əlavə et</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Reservation Modal -->
+  <div class="modal" id="resModal">
+    <div class="sheet">
+      <h3>Rezervi redaktə et</h3>
+      <div class="row">
+        <div><label>Maşın</label><select id="eCar"></select></div>
+        <div><label>Müştəri</label><select id="eCustomer"></select></div>
+      </div>
+      <div class="row">
+        <div><label>Başlama</label><input id="eStart" type="datetime-local"></div>
+        <div><label>Bitmə</label><input id="eEnd" type="datetime-local"></div>
+      </div>
+      <div class="row">
+        <div><label>Endirim (%)</label><input id="eDiscount" type="number" step="1" value="0"></div>
+        <div><label>Status</label>
+          <select id="eStatus"><option>BOOKED</option><option>ACTIVE</option><option>COMPLETED</option><option>CANCELED</option></select>
+        </div>
+      </div>
+      <div id="eConflictWarn" class="helper" style="margin:6px 0 10px;"></div>
+      <div class="divider"></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn" id="resClose">Bağla</button>
+        <button class="btn btn-success" id="resSave">Yadda saxla</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/public/nav.js"></script>
+  <script src="/public/reservations.js"></script>
+</body>
+</html>

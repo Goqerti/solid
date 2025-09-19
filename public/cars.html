@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maşınlar</title>
+  <link rel="stylesheet" href="/public/common.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Maşın əlavə et</h2>
+      <div class="row">
+        <div><label>Marka</label><input id="carBrand" placeholder="BMW" /></div>
+        <div><label>Model</label><input id="carModel" placeholder="E60" /></div>
+      </div>
+      <div class="row">
+        <div><label>İl</label><input id="carYear" type="number" /></div>
+        <div><label>Nömrə</label><input id="carPlate" placeholder="10-AB-123" /></div>
+      </div>
+      <div class="row">
+        <div><label>VIN</label><input id="carVin" /></div>
+        <div><label>Günlük qiymət (AZN)</label><input id="carPrice" type="number" step="0.01" /></div>
+      </div>
+      <button class="btn btn-primary" onclick="addCar()">Yadda saxla</button>
+      <div class="divider"></div>
+      <table class="table" id="carsTbl"></table>
+    </div>
+  </div>
+
+  <div class="modal" id="carModal">
+    <div class="sheet">
+      <h3>Maşını redaktə et</h3>
+      <div class="row">
+        <div><label>Marka</label><input id="eBrand"></div>
+        <div><label>Model</label><input id="eModel"></div>
+      </div>
+      <div class="row">
+        <div><label>İl</label><input id="eYear" type="number"></div>
+        <div><label>Nömrə</label><input id="ePlate"></div>
+      </div>
+      <div class="row">
+        <div><label>VIN</label><input id="eVin"></div>
+        <div><label>Günlük AZN</label><input id="ePrice" type="number" step="0.01"></div>
+      </div>
+      <div class="divider"></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn" id="carClose">Bağla</button>
+        <button class="btn btn-success" id="carSave">Yadda saxla</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/public/nav.js"></script>
+  <script src="/public/cars.js"></script>
+</body>
+</html>
